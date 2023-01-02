@@ -4,6 +4,7 @@ import pandas as pd
 from st_aggrid import AgGrid,ColumnsAutoSizeMode
 import plotly.express as px
 from sklearn.model_selection import train_test_split
+import tensorflow as tf
 from tensorflow import keras
 
 def main():
@@ -71,6 +72,7 @@ def main():
                 x = df.drop(["Name", "überlebt (0=Nein; 1=Ja)"], axis=1)
                 y = df["überlebt (0=Nein; 1=Ja)"]
                 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
+                tf.set_random_seed(42)
                 model = keras.Sequential([
                     keras.layers.Dense(32, activation="relu", input_shape=(x_train.shape[1],)),
                     keras.layers.Dense(16, activation="relu"),
@@ -96,5 +98,4 @@ def main():
 
 if __name__ == '__main__':
       main()
-
-  
+        

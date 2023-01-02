@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 import warnings
 import pandas as pd
 from st_aggrid import AgGrid,ColumnsAutoSizeMode
@@ -10,6 +11,7 @@ from tensorflow import keras
 def main():
     st.set_page_config(page_title="Titanic", page_icon="🚢", layout="wide")
     warnings.filterwarnings("ignore")
+    random.seed(42)
     hide_streamlit_style = """
              <style>
               div.block-container{padding-top:2rem;}

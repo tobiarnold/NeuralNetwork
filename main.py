@@ -29,7 +29,7 @@ def main():
     st.markdown("""----""")
     st.subheader("💾 Datengrundlage")
     try:
-        df=pd.read_csv(r"C:\Users\Besitzer\Dropbox\Aalen DS\Term 6\Business Intelligence\titanic_new.csv")
+        df=pd.read_csv(r"https://raw.githubusercontent.com/tobiarnold/NeuralNetwork/main/titanic_new.csv")
         AgGrid(df,height=300,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     except:
         st.write("Tabelle konnte nicht geladen werden, bitte App neu laden.")

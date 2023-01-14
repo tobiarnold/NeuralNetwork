@@ -64,9 +64,8 @@ def main():
         with st.form(key='Form'):
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
-                neuro=st.sidebar.slider("Anzahl der Neuronen für Input Schicht wählen:", 1, 256, 32, 1)
+                neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 1, 256, 32, 2)
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
-                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 1, 128, 16, 1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
@@ -81,7 +80,7 @@ def main():
                 tf.random.set_seed(42)
                 model = keras.Sequential([
                     keras.layers.Dense(neuro, activation="relu", input_shape=(x_train.shape[1],)),
-                    keras.layers.Dense(neuros, activation=hidden),
+                    keras.layers.Dense(neuro/2, activation=hidden),
                     keras.layers.Dense(1, activation="sigmoid")
                 ])
                 model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])

@@ -63,6 +63,7 @@ def main():
         with st.form(key='Form'):
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
+                split_size = st.sidebar.slider("Aufteilen in Traings- und Testdaten (standard 30% Testdaten):", 0.1,0.9, 0.3, 0.1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
@@ -73,7 +74,7 @@ def main():
             with st.spinner("Bitte warten Neuronales Netz wird ausgeführt"):
                 x = df.drop(["Name", "überlebt (0=Nein; 1=Ja)"], axis=1)
                 y = df["überlebt (0=Nein; 1=Ja)"]
-                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=split_size, random_state=42)
                 tf.random.set_seed(42)
                 model = keras.Sequential([
                     keras.layers.Dense(32, activation="relu", input_shape=(x_train.shape[1],)),

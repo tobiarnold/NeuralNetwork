@@ -61,10 +61,11 @@ def main():
     except:
         st.write("Diagramme konnten nicht geladen werden, bitte App neu laden.")
     try:
-        with st.form(key='Form'):
+        with st.form(key='Form'):2
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
-                hidden = st.radio("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
+                hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
+                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 2, 64, 16, 1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
@@ -79,7 +80,7 @@ def main():
                 tf.random.set_seed(42)
                 model = keras.Sequential([
                     keras.layers.Dense(32, activation="relu", input_shape=(x_train.shape[1],)),
-                    keras.layers.Dense(16, activation=hidden),
+                    keras.layers.Dense(neuros, activation=hidden),
                     keras.layers.Dense(1, activation="sigmoid")
                 ])
                 model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])

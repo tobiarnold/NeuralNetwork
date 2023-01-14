@@ -68,7 +68,7 @@ def main():
                 epochs=st.sidebar.slider("Anzahl der Epochen (Durchläufe auswählen):", 1, 100, 30, 1)
                 neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 2, 256, 32, 2)
                 aktiv = st.selectbox("Aktivierungsfunktion für Input und verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
-                optimizer=st.selectbox("Optimierer wählen:", options=["adam", "SGD", "Adagrad"], index=0)
+                optimizer=st.selectbox("Optimierer wählen:", options=["adam","Adagrad","RMSprop","SGD"], index=0)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)

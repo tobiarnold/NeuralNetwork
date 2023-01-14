@@ -81,7 +81,7 @@ def main():
                 model = keras.Sequential([
                     keras.layers.Dense(32, activation=hidden, input_shape=(x_train.shape[1],)),
                     keras.layers.Dense(neuros, activation=hidden),
-                    keras.layers.Dense(1, activation=hidden)
+                    keras.layers.Dense(1, activation="sigmoid")
                 ])
                 model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
                 model.fit(x_train, y_train, epochs=30)

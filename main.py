@@ -68,6 +68,7 @@ def main():
                 epochs=st.sidebar.slider("Anzahl der Epochen (Durchläufe auswählen):", 1, 100, 30, 1)
                 neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 2, 256, 32, 2)
                 aktiv = st.selectbox("Aktivierungsfunktion für Input und verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
+                optimizer=st.selectbox("Optimierer wählen:", options=["adam", "SGD", "Adagrad"], index=0)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
@@ -85,7 +86,7 @@ def main():
                     keras.layers.Dense(neuro/2, activation=aktiv),
                     keras.layers.Dense(1, activation="sigmoid")
                 ])
-                model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
+                model.compile(optimizer=optimizer,loss="binary_crossentropy",metrics=["accuracy"])
                 history=model.fit(x_train, y_train, epochs=epochs,validation_data=(x_test, y_test))
                 test_loss, test_acc = model.evaluate(x_test, y_test)
                 model.summary(print_fn=lambda x: st.text(x))

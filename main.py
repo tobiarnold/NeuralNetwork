@@ -65,7 +65,7 @@ def main():
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
-                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 1, 200, 16, 1)
+                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 1, 128, 16, 1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)

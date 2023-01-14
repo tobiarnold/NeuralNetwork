@@ -64,7 +64,7 @@ def main():
         with st.form(key='Form'):
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
-                neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 1, 256, 32, 2)
+                neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 2, 256, 32, 2)
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)

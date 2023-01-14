@@ -65,7 +65,7 @@ def main():
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
-                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 2, 64, 16, 1)
+                neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 1, 200, 16, 1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
                 geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
                 klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
@@ -79,7 +79,7 @@ def main():
                 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
                 tf.random.set_seed(42)
                 model = keras.Sequential([
-                    keras.layers.Dense(32, activation=hidden, input_shape=(x_train.shape[1],)),
+                    keras.layers.Dense(32, activation="relu", input_shape=(x_train.shape[1],)),
                     keras.layers.Dense(neuros, activation=hidden),
                     keras.layers.Dense(1, activation="sigmoid")
                 ])

@@ -87,6 +87,7 @@ def main():
                 model.fit(x_train, y_train, epochs=30)
                 test_loss, test_acc = model.evaluate(x_test, y_test)
                 model.summary(print_fn=lambda x: st.text(x))
+                st.write("Test loss:", test_loss)
                 st.write("Test accuracy:", test_acc)
                 if geschlecht=="männlich":
                     geschlecht=0

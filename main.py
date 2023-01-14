@@ -104,13 +104,13 @@ def main():
     except:
         st.write("Fehler bei der Erstellung des Neuronalen Netzes, bitte App neu laden.")
     fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 3))
-        plt.plot(history.history["loss"], label="Training loss")
-        plt.plot(history.history["val_loss"], label="Validation loss")
-        plt.ylabel("Fehler")
-        plt.xlabel("Epochen")
-        plt.title("Training- und Validation loss")
-        plt.legend()
-        st.pyplot(fig)
+    plt.plot(history.history["loss"], label="Training loss")
+    plt.plot(history.history["val_loss"], label="Validation loss")
+    plt.ylabel("Fehler")
+    plt.xlabel("Epochen")
+    plt.title("Training- und Validation loss")
+    plt.legend()
+    st.pyplot(fig)
         
                 
 

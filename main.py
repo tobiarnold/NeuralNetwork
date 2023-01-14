@@ -64,6 +64,7 @@ def main():
         with st.form(key='Form'):
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
+                neuro=st.sidebar.slider("Anzahl der Neuronen für Input Schicht wählen:", 1, 256, 32, 1)
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
                 neuros=st.sidebar.slider("Anzahl der Neuronen für verborgene Schicht wählen:", 1, 128, 16, 1)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
@@ -79,7 +80,7 @@ def main():
                 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=42)
                 tf.random.set_seed(42)
                 model = keras.Sequential([
-                    keras.layers.Dense(32, activation="relu", input_shape=(x_train.shape[1],)),
+                    keras.layers.Dense(neuro, activation="relu", input_shape=(x_train.shape[1],)),
                     keras.layers.Dense(neuros, activation=hidden),
                     keras.layers.Dense(1, activation="sigmoid")
                 ])

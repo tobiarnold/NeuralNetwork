@@ -61,7 +61,7 @@ def main():
     except:
         st.write("Diagramme konnten nicht geladen werden, bitte App neu laden.")
     try:
-        with st.form(key='Form'):2
+        with st.form(key='Form'):
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
                 hidden = st.selectbox("Aktivierungsfunktion für verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)

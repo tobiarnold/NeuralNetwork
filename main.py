@@ -100,7 +100,10 @@ def main():
                 prediction=str(prediction)
                 prediction=prediction[2:7]
                 st.success("#### Deine Überlebenswahrscheinlichkeit beträgt: "+ prediction+ " %")
-                fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 3))
+                
+    except:
+        st.write("Fehler bei der Erstellung des Neuronalen Netzes, bitte App neu laden.")
+   fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 3))
                 plt.plot(history.history["loss"], label="Training loss")
                 plt.plot(history.history["val_loss"], label="Validation loss")
                 plt.ylabel("Fehler")
@@ -108,8 +111,6 @@ def main():
                 plt.title("Training- und Validation loss")
                 plt.legend()
                 st.pyplot(fig)
-    except:
-        st.write("Fehler bei der Erstellung des Neuronalen Netzes, bitte App neu laden.")
 
 if __name__ == '__main__':
       main()

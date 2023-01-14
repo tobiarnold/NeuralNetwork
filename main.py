@@ -86,7 +86,7 @@ def main():
                     keras.layers.Dense(1, activation="sigmoid")
                 ])
                 model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
-                history=model.fit(x_train, y_train, epochs=epochs)
+                history=model.fit(x_train, y_train, epochs=epochs,validation_data=(x_test, y_test))
                 test_loss, test_acc = model.evaluate(x_test, y_test)
                 model.summary(print_fn=lambda x: st.text(x))
                 st.write("Test accuracy:", test_acc)

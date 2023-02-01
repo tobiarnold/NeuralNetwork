@@ -10,7 +10,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 def main():
-    st.set_page_config(page_title="Titanic", page_icon=":ship:", layout="wide")
+    st.set_page_config(page_title="Titanic", page_icon="chart_with_upwards_trend", layout="wide")
     warnings.filterwarnings("ignore")
     random.seed(42)
     hide_streamlit_style = """

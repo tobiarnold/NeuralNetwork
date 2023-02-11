@@ -29,8 +29,7 @@ def main():
     st.info("""
                       - Die nachfolgende Anwendung berechnet mittels eines **Neuronalen Netzes** die theoretische Überlebenswahrscheinlichkeit auf der Titanic.
                       - Das vorliegende Neuronale Netz verfügt über 3 Schichten (Eingabeschicht, verborgene Schicht und Ausgabeschicht).
-                      - Um den Vorgang zu starten, gebt bitte die erforderlichen Parameter 
-                      in der Sidebar auf der linken Seite ein und klickt auf "Eingaben bestätigen".
+                      - Um den Vorgang zu starten, gebt bitte die erforderlichen Parameter in der Sidebar auf der linken Seite ein und klickt auf "Eingaben bestätigen".
                        """)
     st.markdown("""----""")
     st.subheader("💾 Datengrundlage")

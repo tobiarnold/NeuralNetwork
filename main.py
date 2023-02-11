@@ -29,7 +29,8 @@ def main():
     st.info("""
                       - Die nachfolgende Anwendung berechnet mittels eines **Neuronalen Netzes** die theoretische Überlebenswahrscheinlichkeit auf der Titanic.
                       - Das vorliegende Neuronale Netz verfügt über 3 Schichten (Eingabeschicht, verborgene Schicht und Ausgabeschicht).
-                      - Um den Vorgang zu starten, gebt bitte die erforderlichen Parameter in der Sidebar auf der linken Seite ein und klickt auf "Eingaben bestätigen".
+                      - Um den Vorgang zu starten, gebt bitte die erforderlichen Parameter 
+                      in der Sidebar auf der linken Seite ein und klickt auf "Eingaben bestätigen".
                        """)
     st.markdown("""----""")
     st.subheader("💾 Datengrundlage")
@@ -47,14 +48,16 @@ def main():
             fig2 = px.box(df, y="Alter",title="Altersverteilung",color_discrete_sequence=px.colors.qualitative.Vivid)
             st.plotly_chart(fig2, use_container_width=True, config=config)
         with col2:
-            fig3 = px.histogram(df, x="Geschlecht (0=männlich; 1=weiblich)",color="Geschlecht (0=männlich; 1=weiblich)",color_discrete_sequence=px.colors.qualitative.Vivid, title="Geschlechterverteilung")
+            fig3 = px.histogram(df, x="Geschlecht (0=männlich; 1=weiblich)",color="Geschlecht (0=männlich; 1=weiblich)",
+                                color_discrete_sequence=px.colors.qualitative.Vivid, title="Geschlechterverteilung")
             fig3.update_layout(xaxis=dict(tickmode='array', tickvals=[0, 1], ticktext=["männlich", "weiblich"]))
             fig3.update_layout(showlegend=False)
             fig3.update_layout(xaxis_title="")
             fig3.update_layout(yaxis_title="Anzahl")
             st.plotly_chart(fig3, use_container_width=True, config=config)
         with col3:
-            fig4 = px.histogram(df, x="Passagierklasse (1,2,3)",color="Passagierklasse (1,2,3)", color_discrete_sequence=px.colors.qualitative.Vivid, title="Verteilung Passagierklassen")
+            fig4 = px.histogram(df, x="Passagierklasse (1,2,3)",color="Passagierklasse (1,2,3)", 
+                                color_discrete_sequence=px.colors.qualitative.Vivid, title="Verteilung Passagierklassen")
             fig4.update_layout(showlegend=False)
             fig4.update_layout(xaxis_title="")
             fig4.update_layout(yaxis_title="Anzahl")

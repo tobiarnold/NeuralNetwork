@@ -44,19 +44,25 @@ def main():
         config = {"displayModeBar": False}
         col1, col2, col3 = st.columns(3)
         with col1:
-            fig2 = px.box(df, y="Alter",title="Altersverteilung",color_discrete_sequence=px.colors.qualitative.Vivid)
+            fig2 = px.box(df, y="Alter",title="Altersverteilung",
+                          color_discrete_sequence=px.colors.qualitative.Vivid)
             st.plotly_chart(fig2, use_container_width=True, config=config)
         with col2:
-            fig3 = px.histogram(df, x="Geschlecht (0=männlich; 1=weiblich)",color="Geschlecht (0=männlich; 1=weiblich)",
-                                color_discrete_sequence=px.colors.qualitative.Vivid, title="Geschlechterverteilung")
-            fig3.update_layout(xaxis=dict(tickmode='array', tickvals=[0, 1], ticktext=["männlich", "weiblich"]))
+            fig3 = px.histogram(df, x="Geschlecht (0=männlich; 1=weiblich)",
+                                color="Geschlecht (0=männlich; 1=weiblich)",
+                                color_discrete_sequence=px.colors.qualitative.Vivid, 
+                                title="Geschlechterverteilung")
+            fig3.update_layout(xaxis=dict(tickmode='array', 
+                               tickvals=[0, 1], ticktext=["männlich", "weiblich"]))
             fig3.update_layout(showlegend=False)
             fig3.update_layout(xaxis_title="")
             fig3.update_layout(yaxis_title="Anzahl")
             st.plotly_chart(fig3, use_container_width=True, config=config)
         with col3:
-            fig4 = px.histogram(df, x="Passagierklasse (1,2,3)",color="Passagierklasse (1,2,3)", 
-                                color_discrete_sequence=px.colors.qualitative.Vivid, title="Verteilung Passagierklassen")
+            fig4 = px.histogram(df, x="Passagierklasse (1,2,3)",
+                                color="Passagierklasse (1,2,3)", 
+                                color_discrete_sequence=px.colors.qualitative.Vivid,
+                                title="Verteilung Passagierklassen")
             fig4.update_layout(showlegend=False)
             fig4.update_layout(xaxis_title="")
             fig4.update_layout(yaxis_title="Anzahl")
@@ -68,12 +74,17 @@ def main():
             with st.sidebar:
                 st.sidebar.header("💡 Parameter auswählen:")
                 epochs=st.sidebar.slider("Anzahl der Epochen (Durchläufe auswählen):", 1, 100, 30, 1)
-                neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:", 2, 256, 32, 2)
-                aktiv = st.selectbox("Aktivierungsfunktion für Input und verborgene Schicht wählen:", options=["relu", "sigmoid", "tanh"], index=0)
-                optimizer=st.selectbox("Optimierer wählen:", options=["Adam","Adagrad","RMSprop","SGD"], index=0)
+                neuro=st.sidebar.slider("Anzahl der Neuronen für Input und Hidden Schicht (Hälfte der Neuronen der Input Schicht) wählen:"
+                                        , 2, 256, 32, 2)
+                aktiv = st.selectbox("Aktivierungsfunktion für Input und verborgene Schicht wählen:",
+                                     options=["relu", "sigmoid", "tanh"], index=0)
+                optimizer=st.selectbox("Optimierer wählen:", 
+                                       options=["Adam","Adagrad","RMSprop","SGD"], index=0)
                 alter = st.sidebar.slider("Alter:", 1, 80, 30, 1)
-                geschlecht = st.radio("Geschlecht auswählen:", options=["männlich", "weiblich"], index=1)
-                klasse = st.sidebar.selectbox("Passagierklasse auswählen:",options=[1,2,3], index=1)
+                geschlecht = st.radio("Geschlecht auswählen:", 
+                                      options=["männlich", "weiblich"], index=1)
+                klasse = st.sidebar.selectbox("Passagierklasse auswählen:",
+                                              options=[1,2,3], index=1)
                 submitted = st.form_submit_button(label="Eingaben bestätigen")
         st.markdown("""----""")
         st.subheader("🐱‍💻 Künstliches neuronales Netz")

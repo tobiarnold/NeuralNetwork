@@ -5,7 +5,9 @@ import pandas as pd
 from st_aggrid import AgGrid,ColumnsAutoSizeMode
 import plotly.express as px
 import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import tensorflow as tf
 from tensorflow import keras
 
@@ -101,27 +103,36 @@ def main():
                 ])
                 model.compile(optimizer=optimizer,loss="binary_crossentropy",metrics=["accuracy"])
                 history=model.fit(x_train, y_train, epochs=epochs,validation_data=(x_test, y_test))
-                test_loss, test_acc = model.evaluate(x_test, y_test)
-                model.summary(print_fn=lambda x: st.text(x))
-                st.write("Test accuracy:", test_acc)
                 if geschlecht=="männlich":
                     geschlecht=0
                 else:
                     geschlecht=1
                 new_sample = [[geschlecht, alter, klasse]]
                 prediction = model.predict(new_sample)
-                prediction=prediction*100
-                prediction=str(prediction)
-                prediction=prediction[2:7]
-                st.success("#### Deine Überlebenswahrscheinlichkeit beträgt: "+ prediction+ " %")
-                fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 3))
-                plt.plot(history.history["loss"], label="Training loss")
-                plt.plot(history.history["val_loss"], label="Validation loss")
-                plt.ylabel("Fehler")
-                plt.xlabel("Epochen")
-                plt.title("Training- und Validation loss")
-                plt.legend()
-                st.pyplot(fig)    
+                prediction1=prediction*100
+                prediction1=str(prediction1)
+                prediction1=prediction1[2:7]
+                st.success("#### Deine Überlebenswahrscheinlichkeit beträgt: "+ prediction1+ " %")
+                model.summary(print_fn=lambda x: st.text(x))
+                y_predictions = model.predict(x_test)
+                y_predictions = (y_predictions > 0.5)
+                st.text("Model Report:\n " + classification_report(y_test, y_predictions))
+                confusionmatrix = confusion_matrix(y_test, y_predictions)
+                accuracy = accuracy_score(y_test, y_predictions)
+                st.write("Test accuracy:", str(accuracy))
+                fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(8, 3))
+                ax[0].plot(history.history["loss"], label="Training loss")
+                ax[0].plot(history.history["val_loss"], label="Validation loss")
+                ax[0].set_ylabel("Fehler")
+                ax[0].set_xlabel("Epochen")
+                ax[0].set_title("Training- und Validation loss")
+                ax[0].legend()
+                sns.heatmap(confusionmatrix, annot=True, cmap="viridis", fmt=".0f", ax=ax[1], cbar=True)
+                ax[1].set_xlabel("Predicted")
+                ax[1].set_ylabel("Actual")
+                ax[1].set_title("Confusion Matrix")
+                fig.tight_layout()
+                st.pyplot(fig)
     except:
         st.write("Fehler bei der Erstellung des Neuronalen Netzes, bitte App neu laden.")
                     

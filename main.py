@@ -38,7 +38,10 @@ def main():
     try:
         df=pd.read_csv(r"https://raw.githubusercontent.com/tobiarnold/NeuralNetwork/main/titanic_new.csv")
         #AgGrid(df,height=300,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
-        st.dataframe(df)
+        df_style = df[df["überlebt (0=Nein; 1=Ja)"]==1]
+        slice_ = pd.IndexSlice[df_style.index, df_style.columns]
+        df_show = df.style.set_properties(**{"background-color": " #ffffa1"})
+        st.dataframe(df_show)
     except:
         st.write("Tabelle konnte nicht geladen werden, bitte App neu laden.")
     st.markdown("""----""")

@@ -1,8 +1,8 @@
 streamlit
 pandas 
-streamlit-aggrid
 scikit-learn
 plotly-express
 matplotlib
 seaborn
 tensorflow
+keras

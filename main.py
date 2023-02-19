@@ -2,7 +2,7 @@ import streamlit as st
 import random
 import warnings
 import pandas as pd
-from st_aggrid import AgGrid,ColumnsAutoSizeMode
+#from st_aggrid import AgGrid,ColumnsAutoSizeMode
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -37,7 +37,8 @@ def main():
     st.subheader("💾 Datengrundlage")
     try:
         df=pd.read_csv(r"https://raw.githubusercontent.com/tobiarnold/NeuralNetwork/main/titanic_new.csv")
-        AgGrid(df,height=300,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
+        #AgGrid(df,height=300,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
+        st.dataframe(df)
     except:
         st.write("Tabelle konnte nicht geladen werden, bitte App neu laden.")
     st.markdown("""----""")

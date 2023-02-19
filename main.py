@@ -38,9 +38,7 @@ def main():
     try:
         df=pd.read_csv(r"https://raw.githubusercontent.com/tobiarnold/NeuralNetwork/main/titanic_new.csv")
         #AgGrid(df,height=300,columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
-        subset_dict = {("überlebt (0=Nein; 1=Ja)", ""): "background-color: #ffffa1"}
-        df_show = df.style.set_properties(subset=subset_dict)
-        st.dataframe(df_show)
+        st.dataframe(df)
     except:
         st.write("Tabelle konnte nicht geladen werden, bitte App neu laden.")
     st.markdown("""----""")
